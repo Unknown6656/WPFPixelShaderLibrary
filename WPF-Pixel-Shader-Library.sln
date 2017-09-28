@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpfpslib", "wpfpslib\wpfpslib.csproj", "{298D6F05-69AE-4807-A951-FAE518D0D791}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EB453DBA-B607-4177-9E30-E0B0B760630C} = {EB453DBA-B607-4177-9E30-E0B0B760630C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pscompiler", "pscompiler\pscompiler.csproj", "{EB453DBA-B607-4177-9E30-E0B0B760630C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{50829CDD-8206-4093-AEB8-53FCED8B1D2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFTestApplication", "WPFTestApplication\WPFTestApplication.csproj", "{5B342B14-41FD-43D8-8FA8-D1EAEFE585AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{298D6F05-69AE-4807-A951-FAE518D0D791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{298D6F05-69AE-4807-A951-FAE518D0D791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{298D6F05-69AE-4807-A951-FAE518D0D791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{298D6F05-69AE-4807-A951-FAE518D0D791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB453DBA-B607-4177-9E30-E0B0B760630C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB453DBA-B607-4177-9E30-E0B0B760630C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB453DBA-B607-4177-9E30-E0B0B760630C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB453DBA-B607-4177-9E30-E0B0B760630C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B342B14-41FD-43D8-8FA8-D1EAEFE585AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B342B14-41FD-43D8-8FA8-D1EAEFE585AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B342B14-41FD-43D8-8FA8-D1EAEFE585AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B342B14-41FD-43D8-8FA8-D1EAEFE585AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5B342B14-41FD-43D8-8FA8-D1EAEFE585AD} = {50829CDD-8206-4093-AEB8-53FCED8B1D2C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8EF7C287-CCB9-4F96-BD3A-331F5B87D1F0}
+	EndGlobalSection
+EndGlobal
