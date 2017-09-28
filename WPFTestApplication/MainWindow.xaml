@@ -11,7 +11,7 @@
     <Window.Resources>
         <VisualBrush x:Key="bgbrush" TileMode="Tile" Viewport="0,0,5,5" ViewportUnits="Absolute" Viewbox="0,0,5,5" ViewboxUnits="Absolute">
             <VisualBrush.Visual>
-                <Grid Background="Transparent">
+                <Grid Background="White">
                     <Path Data="M 0 5 L 5 0" Stroke="#FDCF" />
                     <Path Data="M 0 0 L 5 5" Stroke="#FF99" />
                 </Grid>
@@ -43,14 +43,20 @@
                 <fx:NormalMapEffect Range="0.002"/>
             </GroupBox.Effect>
         </GroupBox>
-        <GroupBox x:Name="gb2" Template="{StaticResource cntrl}" Header="WPF Blur" Canvas.Left="215">
+        <GroupBox x:Name="gb2" Template="{StaticResource cntrl}" Header="WPF Blur Effect" Canvas.Left="215">
             <GroupBox.Effect>
                 <BlurEffect Radius="5"/>
             </GroupBox.Effect>
         </GroupBox>
-        <GroupBox x:Name="gb3" Template="{StaticResource cntrl}" Canvas.Left="430">
+        <GroupBox x:Name="gb3" Template="{StaticResource cntrl}" Header="Glass Tiles Effect" Canvas.Left="430">
+            <GroupBox.Effect>
+                <fx:GlassTilesEffect Tiles="3" BevelWidth="2" GroutColor="Transparent"/>
+            </GroupBox.Effect>
         </GroupBox>
-        <GroupBox x:Name="gb4" Template="{StaticResource cntrl}" Canvas.Top="110">
+        <GroupBox x:Name="gb4" Template="{StaticResource cntrl}" Header="Cubic Lens Distortion Effect" Canvas.Top="110">
+            <GroupBox.Effect>
+                <fx:CubicLensDistortionEffect DistortionCoefficient="-3" CubicDistortion="2" Zoom="0.5"/>
+            </GroupBox.Effect>
         </GroupBox>
         <GroupBox x:Name="gb5" Template="{StaticResource cntrl}" Canvas.Left="215" Canvas.Top="110">
         </GroupBox>
