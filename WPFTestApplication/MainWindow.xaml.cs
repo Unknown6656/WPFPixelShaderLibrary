@@ -32,7 +32,6 @@ namespace WPFTestApplication
         {
             (sender as PresentationSource).ContentRendered -= MainWindow_ContentRendered;
             
-
             (gb1.Effect as NormalMapEffect).Range = 1 / gb1.ActualWidth;
         }
     }

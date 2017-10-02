@@ -28,12 +28,13 @@ float4 main(float2 uv : TEXCOORD) : COLOR
         -1, -2, -1,
     };
     float sx = 128, sy = 128;
+    float r = clamp(Range, 0.000001, 1);
 		int fx, fy;
 
     for (fy = -1; fy <= 1; ++fy)
         for (fx = -1; fx <= 1; ++fx)
         {
-            float2 nuv = { uv[0] + fy * Range * 0.125f, uv[1] + fx * Range * 0.125f };
+            float2 nuv = { uv[0] + fy * r * 0.125f, uv[1] + fx * r * 0.125f };
             float4 nclr = tex2D(input, nuv);
             float gray = (nclr.r + nclr.g + nclr.g) * 255 / 3;
 

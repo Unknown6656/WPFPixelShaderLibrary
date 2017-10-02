@@ -2,13 +2,12 @@
 // http://www.ssontech.com/content/lensalg.htm
 // Modified by François Tarlier and Unknown6665
 
-sampler2D input : register(S0);
-float amount : register(C0);
+sampler2D input : register(s0);
 
 
 float4 main(float2 uv : TEXCOORD0) : COLOR
 {
-    float k = -0.3 * (1 - max(amount, 0));
+    float k = -0.15;
     float kcube = 0.5;
     float r2 = (uv.x - 0.5) * (uv.x - 0.5) + (uv.y - 0.5) * (uv.y - 0.5);
     float f = 1 + r2 * (k + kcube * sqrt(r2));

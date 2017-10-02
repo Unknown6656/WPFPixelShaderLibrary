@@ -7,19 +7,21 @@
         xmlns:local="clr-namespace:WPFTestApplication"
         mc:Ignorable="d"
         Title="MainWindow"
-        Loaded="Window_Loaded" Height="603" Width="1106">
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
+        Height="775.5" Width="1733">
     <Window.Resources>
         <VisualBrush x:Key="bgbrush" TileMode="Tile" Viewport="0,0,5,5" ViewportUnits="Absolute" Viewbox="0,0,5,5" ViewboxUnits="Absolute">
             <VisualBrush.Visual>
                 <Grid Background="White">
-                    <Path Data="M 0 5 L 5 0" Stroke="#FDCF" />
-                    <Path Data="M 0 0 L 5 5" Stroke="#FF99" />
+                    <Path Data="M 0 5 L 5 0" Stroke="#FDEF" />
+                    <Path Data="M 0 0 L 5 5" Stroke="#FEEA" />
                 </Grid>
             </VisualBrush.Visual>
         </VisualBrush>
         <ControlTemplate x:Key="cntrl" TargetType="GroupBox">
-            <GroupBox Width="200" Height="100" Margin="5" Header="{TemplateBinding Header}" Background="{StaticResource bgbrush}">
-                <Canvas>
+            <GroupBox Width="200" Height="100" Margin="5" Header="{TemplateBinding Header}" Effect="{x:Null}" Background="White">
+                <Canvas Background="{StaticResource bgbrush}" Effect="{TemplateBinding Effect}">
                     <Button Content="Button" Width="50" Height="23" Canvas.Left="5" Canvas.Top="5"/>
                     <RadioButton Content="Option 1" Canvas.Left="5" Canvas.Top="32" IsEnabled="false" FontStyle="Italic" FontWeight="Bold"/>
                     <RadioButton Content="Option 2" Canvas.Left="5" Canvas.Top="47" IsChecked="True"/>
@@ -29,14 +31,18 @@
                             <RotateTransform Angle="180"/>
                         </CheckBox.RenderTransform>
                     </CheckBox>
-                    <TextBox Canvas.Left="100" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap" Canvas.Top="20" Width="90" Height="60" Text="test&#10;text" Background="CornflowerBlue" Foreground="Wheat"/>
+                    <TextBox Canvas.Left="100" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap" Canvas.Top="20" Width="90" Height="60" Text="test&#10;text">
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/Resources/testimage.jpg"/>
+                        </TextBox.Background>
+                    </TextBox>
                 </Canvas>
             </GroupBox>
         </ControlTemplate>
     </Window.Resources>
     <Canvas>
         <Canvas.LayoutTransform>
-            <ScaleTransform CenterX="0" CenterY="0" ScaleX="1.7" ScaleY="1.7"/>
+            <ScaleTransform CenterX="0" CenterY="0" ScaleX="1.6" ScaleY="1.6"/>
         </Canvas.LayoutTransform>
         <GroupBox x:Name="gb1" Template="{StaticResource cntrl}" Header="Normal Map Effect">
             <GroupBox.Effect>
@@ -50,23 +56,70 @@
         </GroupBox>
         <GroupBox x:Name="gb3" Template="{StaticResource cntrl}" Header="Glass Tiles Effect" Canvas.Left="430">
             <GroupBox.Effect>
-                <fx:GlassTilesEffect Tiles="3" BevelWidth="2" GroutColor="Transparent"/>
+                <fx:GlassTilesEffect Tiles="3" BevelWidth="2" BackgroundColor="Transparent"/>
             </GroupBox.Effect>
         </GroupBox>
-        <GroupBox x:Name="gb4" Template="{StaticResource cntrl}" Header="Cubic Lens Distortion Effect" Canvas.Top="110">
+        <GroupBox x:Name="gb4" Template="{StaticResource cntrl}" Header="Cubic Lens Distortion Effect" Canvas.Left="645">
             <GroupBox.Effect>
                 <fx:CubicLensDistortionEffect DistortionCoefficient="-3" CubicDistortion="2" Zoom="0.5"/>
             </GroupBox.Effect>
         </GroupBox>
-        <GroupBox x:Name="gb5" Template="{StaticResource cntrl}" Canvas.Left="215" Canvas.Top="110">
+        <GroupBox x:Name="gb5" Template="{StaticResource cntrl}" Header="Cubic Chromatic Abberation Effect" Canvas.Left="860">
+            <GroupBox.Effect>
+                <fx:CubicChromaticAbberationEffect Amount="0.01"/>
+            </GroupBox.Effect>
         </GroupBox>
-        <GroupBox x:Name="gb6" Template="{StaticResource cntrl}" Canvas.Left="430" Canvas.Top="110">
+        <GroupBox x:Name="gb6" Template="{StaticResource cntrl}" Header="Linear Chromatic Abberation Effect" Canvas.Top="115">
+            <GroupBox.Effect>
+                <fx:LinearChromaticAbberationEffect Amount="0.1" Angle="0.25"/>
+            </GroupBox.Effect>
         </GroupBox>
-        <GroupBox x:Name="gb7" Template="{StaticResource cntrl}" Canvas.Left="-2" Canvas.Top="220">
+        <GroupBox x:Name="gb7" Template="{StaticResource cntrl}" Header="Rounded Glass Tiles Effect" Canvas.Left="215" Canvas.Top="115">
+            <GroupBox.Effect>
+                <fx:RoundedGlassTilesEffect Density="0.1"/>
+            </GroupBox.Effect>
         </GroupBox>
-        <GroupBox x:Name="gb8" Template="{StaticResource cntrl}" Canvas.Left="213" Canvas.Top="220">
+        <GroupBox x:Name="gb8" Template="{StaticResource cntrl}" Header="Hexagonal Pixelation Effect" Canvas.Left="430" Canvas.Top="115">
+            <GroupBox.Effect>
+                <fx:HexagonalPixelationEffect Amount="0.1"/>
+            </GroupBox.Effect>
         </GroupBox>
-        <GroupBox x:Name="gb9" Template="{StaticResource cntrl}" Canvas.Left="428" Canvas.Top="220">
+        <GroupBox x:Name="gb9" Template="{StaticResource cntrl}" Header="Ripple Effect" Canvas.Left="645" Canvas.Top="115">
+            <GroupBox.Effect>
+                <fx:RippleEffect AspectRatio="2"/>
+            </GroupBox.Effect>
+        </GroupBox>
+        <GroupBox x:Name="gb10" Template="{StaticResource cntrl}" Header="Square Pixelation Effect" Canvas.Left="860" Canvas.Top="115">
+            <GroupBox.Effect>
+                <fx:PixelationEffect Count="40,20"/>
+            </GroupBox.Effect>
+        </GroupBox>
+        <GroupBox x:Name="gb11" Template="{StaticResource cntrl}" Header="Offset Pixelation Effect" Canvas.Top="230">
+            <GroupBox.Effect>
+                <fx:DiagonalPixelationEffect Count="40,20"/>
+            </GroupBox.Effect>
+        </GroupBox>
+        <GroupBox x:Name="gb12" Template="{StaticResource cntrl}" Header="Black Hole Gravitational Lensing" Canvas.Top="230" Canvas.Left="215">
+            <GroupBox.Effect>
+                <fx:BlackHoleEffect Position="0.53,0.5" Aspectratio="0.5" Dist="1" Size="0.5" Radius="0.85"/>
+            </GroupBox.Effect>
+        </GroupBox>
+        <GroupBox x:Name="gb13" Template="{StaticResource cntrl}" Header="Invert Effect" Canvas.Top="230" Canvas.Left="430">
+            <fx:InvertEffect Amount="1"/>
+        </GroupBox>
+        <GroupBox x:Name="gb14" Template="{StaticResource cntrl}" Header="" Canvas.Top="230" Canvas.Left="645">
+        </GroupBox>
+        <GroupBox x:Name="gb15" Template="{StaticResource cntrl}" Header="" Canvas.Top="230" Canvas.Left="860">
+        </GroupBox>
+        <GroupBox x:Name="gb16" Template="{StaticResource cntrl}" Header="" Canvas.Top="345">
+        </GroupBox>
+        <GroupBox x:Name="gb17" Template="{StaticResource cntrl}" Header="" Canvas.Top="345" Canvas.Left="215">
+        </GroupBox>
+        <GroupBox x:Name="gb18" Template="{StaticResource cntrl}" Header="" Canvas.Top="345" Canvas.Left="430">
+        </GroupBox>
+        <GroupBox x:Name="gb19" Template="{StaticResource cntrl}" Header="" Canvas.Top="345" Canvas.Left="645">
+        </GroupBox>
+        <GroupBox x:Name="gb20" Template="{StaticResource cntrl}" Header="" Canvas.Top="345" Canvas.Left="860">
         </GroupBox>
     </Canvas>
 </Window>

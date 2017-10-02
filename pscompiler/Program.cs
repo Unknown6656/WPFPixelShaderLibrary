@@ -14,10 +14,14 @@ namespace pscompiler
     {
         public static int Main(string[] argv)
         {
+            Console.WriteLine("Copyright (c) Unknown6656, 2017. All rights reserved.");
+            
             if (!argv.Any())
             {
                 Console.WriteLine(@"Usage:
-    pscompiler <src-dir> <dst-dir>");
+    pscompiler <src-dir> <dst-dir>
+
+Compiles any *.fx file in `src-dir` and writes the generated *.ps file into the directory `dst-dir`.");
 
                 return 0;
             }
@@ -74,22 +78,29 @@ namespace pscompiler
                     RedirectStandardError = true,
                     RedirectStandardOutput = true,
                 };
+                bool failed = false;
 
                 using (Process p = new Process())
                 {
                     p.StartInfo = psi;
                     p.Start();
 
-                    Console.Out.WriteLine(p.StandardOutput.ReadToEnd());
-                    Console.Error.WriteLine(p.StandardError.ReadToEnd());
+                    string cout = p.StandardOutput.ReadToEnd();
+                    string cerr = p.StandardError.ReadToEnd();
 
                     p.WaitForExit();
 
-                    if ((ret == 0) && (p.ExitCode != 0))
-                        ret = p.ExitCode;
+                    if (failed = p.ExitCode != 0)
+                    {
+                        Console.Out.WriteLine(cout);
+                        Console.Error.WriteLine(cerr);
+                        
+                        if (ret == 0)
+                            ret = p.ExitCode;
+                    }
                 }
 
-                Console.WriteLine($"{fx.FullName} --> {ps}");
+                Console.WriteLine($"[{(failed ? "ERR." : " OK ")}] {fx.FullName} --> {ps}");
             }
             
             return ret;
