@@ -1,7 +1,10 @@
-﻿using System.Reflection;
+﻿using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows;
+using System.Reflection;
 using System;
+
+[assembly: XmlnsDefinition("https://unknown6656.com/wpfpslib", nameof(wpfpslib))]
 
 namespace wpfpslib
 {

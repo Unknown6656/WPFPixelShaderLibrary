@@ -6,7 +6,7 @@ using System;
 
 namespace pscompiler
 {
-    using spf = Environment.SpecialFolder;
+    using SpecialFolder = Environment.SpecialFolder;
 
 
     public static class Program
@@ -29,12 +29,12 @@ Compiles any *.fx file in `src-dir` and writes the generated *.ps file into the 
 
             FileInfo fxc = (from f in new[]
                             {
-                                spf.Programs,
-                                spf.ProgramFiles,
-                                spf.ProgramFilesX86,
-                                spf.CommonPrograms,
-                                spf.CommonProgramFiles,
-                                spf.CommonProgramFilesX86,
+                                SpecialFolder.Programs,
+                                SpecialFolder.ProgramFiles,
+                                SpecialFolder.ProgramFilesX86,
+                                SpecialFolder.CommonPrograms,
+                                SpecialFolder.CommonProgramFiles,
+                                SpecialFolder.CommonProgramFilesX86,
                             }
                             let path = Environment.GetFolderPath(f)
                             let dir = new DirectoryInfo($@"{path}\Windows Kits")
@@ -47,7 +47,7 @@ Compiles any *.fx file in `src-dir` and writes the generated *.ps file into the 
                             orderby arch.ToLower().Contains(archstr) ? 1 : -1 descending
                             select file).FirstOrDefault();
 
-            foreach (var check in new(Func<bool> f, string msg)[]
+            foreach ((Func<bool> func, string message) in new(Func<bool>, string)[]
             {
                 (() => fxc is null, "The fxc compiler could not be found on this machine. Please install the latest Windows SDK version."),
                 (() => argv.Length < 1, "A source directory must be given."),
@@ -55,9 +55,9 @@ Compiles any *.fx file in `src-dir` and writes the generated *.ps file into the 
                 (() => !Directory.Exists(argv[0]), "The source directory must exist."),
                 (() => !Directory.Exists(argv[0]), "The target directory must exist."),
             })
-                if (check.f())
+                if (func())
                 {
-                    Console.Error.WriteLine(check.msg);
+                    Console.Error.WriteLine(message);
 
                     return -1;
                 }
@@ -106,6 +106,7 @@ Compiles any *.fx file in `src-dir` and writes the generated *.ps file into the 
             return ret;
         }
 
-        private static bool match(this string str, string pat, out Match m, RegexOptions opt = RegexOptions.Compiled | RegexOptions.IgnoreCase) => (m = Regex.Match(str, pat, opt)).Success;
+        private static bool match(this string str, string pat, out Match m, RegexOptions opt = RegexOptions.Compiled | RegexOptions.IgnoreCase) =>
+            (m = Regex.Match(str, pat, opt)).Success;
     }
 }

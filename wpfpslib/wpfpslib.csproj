@@ -9,15 +9,37 @@
         <XamlDebuggingInformation>True</XamlDebuggingInformation>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <RunPostBuildEvent>Always</RunPostBuildEvent>
+        <PackageId>unknown6656.WPFPixelShaderLibrary</PackageId>
+        <Authors>unknown6656</Authors>
+        <Company>unknown6656</Company>
+        <Product>WPF Pixel Shader Library</Product>
+        <Description>A Pixel Shader library to be used in WPF's XAML.
+Just add `xmlns:fx="https://unknown6656.com/wpfpslib"` to your XAML namespace definitions to use the effects.</Description>
+        <Copyright>Copyright © unknown6656, 2017 - 2020</Copyright>
+        <PackageProjectUrl>https://github.com/Unknown6656/WPFPixelShaderLibrary</PackageProjectUrl>
+        <PackageIcon>unknown6656-logo-1024.png</PackageIcon>
+        <RepositoryUrl>https://github.com/Unknown6656/WPFPixelShaderLibrary</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
+        <PackageTags>unknown6656;pixel;shader;effect;library;wpf;xaml;windows;blur;distortion;ps;dgsl;hlsl;fx;pscompiler;fxc</PackageTags>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
     <ItemGroup>
         <Folder Include="ps-dgsl/" />
         <Content Include="ps-hlsl/*.fx" />
+        <None Include="..\LICENSE">
+          <Pack>True</Pack>
+          <PackagePath></PackagePath>
+        </None>
+        <None Include="C:\Users\unknown6656\Pictures\unknown6656\unknown6656-logo-1024.png">
+          <Pack>True</Pack>
+          <PackagePath></PackagePath>
+        </None>
         <Resource Include="ps-compiled/*.ps" />
         <None Remove="ps-hlsl\BlurBehind.fx" />
         <ProjectReference Include="../pscompiler/pscompiler.csproj" />
     </ItemGroup>
     <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-      <Exec Command="$(SolutionDir)tools/pscompiler.exe ps-hlsl ps-compiled" />
+      <Exec Command="dotnet $(SolutionDir)tools/pscompiler.dll ps-hlsl ps-compiled" />
     </Target>
 </Project>

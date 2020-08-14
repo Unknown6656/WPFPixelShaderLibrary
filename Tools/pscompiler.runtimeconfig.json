@@ -1,9 +1,9 @@
 {
   "runtimeOptions": {
-    "tfm": "netcoreapp3.1",
+    "tfm": "netcoreapp2.0",
     "framework": {
-      "name": "Microsoft.WindowsDesktop.App",
-      "version": "3.1.0"
+      "name": "Microsoft.NETCore.App",
+      "version": "2.0.0"
     }
   }
 }
