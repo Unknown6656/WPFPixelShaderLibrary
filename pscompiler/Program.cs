@@ -1,7 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.IO;
 using System;
 
@@ -28,7 +27,6 @@ Compiles any *.fx file in `src-dir` and writes the generated *.ps file into the 
 
             string archstr = IntPtr.Size == 8 ? "x64" : "x86";
 
-            Match m = null;
             FileInfo fxc = (from f in new[]
                             {
                                 spf.Programs,
@@ -42,8 +40,9 @@ Compiles any *.fx file in `src-dir` and writes the generated *.ps file into the 
                             let dir = new DirectoryInfo($@"{path}\Windows Kits")
                             where dir.Exists
                             from file in dir.GetFiles("fxc.exe", SearchOption.AllDirectories)
+                            where file?.Directory?.Name != null
                             let arch = file.Directory.Name
-                            let verstr = file.Directory.FullName.match(@"([0-9]+\.[0-9]+[\.0-9]*)", out m) ? m.ToString() : "0.0.0.0"
+                            let verstr = file.Directory.FullName.match(@"([0-9]+\.[0-9]+[\.0-9]*)", out Match m) ? m.ToString() : "0.0.0.0"
                             orderby new Version(verstr) descending
                             orderby arch.ToLower().Contains(archstr) ? 1 : -1 descending
                             select file).FirstOrDefault();
@@ -78,7 +77,7 @@ Compiles any *.fx file in `src-dir` and writes the generated *.ps file into the 
                     RedirectStandardError = true,
                     RedirectStandardOutput = true,
                 };
-                bool failed = false;
+                bool failed;
 
                 using (Process p = new Process())
                 {
@@ -89,8 +88,9 @@ Compiles any *.fx file in `src-dir` and writes the generated *.ps file into the 
                     string cerr = p.StandardError.ReadToEnd();
 
                     p.WaitForExit();
+                    failed = p.ExitCode != 0;
 
-                    if (failed = p.ExitCode != 0)
+                    if (failed)
                     {
                         Console.Out.WriteLine(cout);
                         Console.Error.WriteLine(cerr);
@@ -106,7 +106,6 @@ Compiles any *.fx file in `src-dir` and writes the generated *.ps file into the 
             return ret;
         }
 
-        private static bool match(this string str, string pat, out Match m, RegexOptions opt = RegexOptions.Compiled | RegexOptions.IgnoreCase) =>
-            (m = Regex.Match(str, pat, opt)).Success;
+        private static bool match(this string str, string pat, out Match m, RegexOptions opt = RegexOptions.Compiled | RegexOptions.IgnoreCase) => (m = Regex.Match(str, pat, opt)).Success;
     }
 }

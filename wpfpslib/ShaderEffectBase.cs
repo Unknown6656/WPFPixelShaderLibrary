@@ -1,19 +1,21 @@
-﻿using System.Windows.Media.Effects;
+﻿using System.Text.RegularExpressions;
+using System.Windows.Media.Effects;
 using System.Diagnostics;
-using System.Linq;
-using System;
-using System.Resources;
 using System.Collections;
-using System.IO;
 using System.Reflection;
-using System.Text.RegularExpressions;
+using System.Resources;
 using System.Windows;
+using System.Linq;
+using System.IO;
+using System;
+
 
 namespace wpfpslib
 {
     /// <summary>
     /// Represents the base class for all pixel shader effects. Cannot be inherited from external classes.
     /// </summary>
+    /// <inheritdoc/>
     public abstract class PixelShaderEffectBase
         : ShaderEffect
     {
@@ -29,6 +31,7 @@ namespace wpfpslib
         /// <summary>
         /// Static constructor
         /// </summary>
+        /// <inheritdoc/>
         static PixelShaderEffectBase()
         {
             Assembly asm = typeof(PixelShaderEffectBase).Assembly;
@@ -39,7 +42,7 @@ namespace wpfpslib
             using (ResourceReader rd = new ResourceReader(str))
                 AvailableEffects = (from e in rd.Cast<DictionaryEntry>()
                                     let name = e.Key as string
-                                    where name.match(@"(.*(\\|\/))?(?<name>.+)\.ps", out m)
+                                    where name.Match(@"(.*(\\|\/))?(?<name>.+)\.ps", out m)
                                     let res = m?.Groups["name"]?.ToString()
                                     where res != null
                                     select res).ToArray();
@@ -48,8 +51,9 @@ namespace wpfpslib
         /// <summary>
         /// Creates a new pixel shader with the caller's name used as pixel shader input file
         /// </summary>
+        /// <inheritdoc/>
         internal PixelShaderEffectBase()
-            : this(TrimEnd(new StackTrace().GetFrame(1).GetMethod().DeclaringType.Name, "Effect"))
+            : this(TrimEnd(new StackTrace().GetFrame(1).GetMethod().DeclaringType?.Name, "Effect"))
         {
         }
 
@@ -57,6 +61,7 @@ namespace wpfpslib
         /// Creates a new pixel shader with the given name used as pixel shader input file (without file extension or directory)
         /// </summary>
         /// <param name="name">Compiled pixel shader file name</param>
+        /// <inheritdoc/>
         internal PixelShaderEffectBase(string name)
             : this(new PixelShader
             {
@@ -66,9 +71,20 @@ namespace wpfpslib
         }
 
         /// <summary>
+        /// Creates a new pixel shader with the given C# class type
+        /// </summary>
+        /// <param name="type">Pixel shader effect type</param>
+        /// <inheritdoc/>
+        internal PixelShaderEffectBase(Type type)
+            : this(TrimEnd(type.Name, "Effect"))
+        {
+        }
+
+        /// <summary>
         /// Creates a new pixel shader effect based on the given shader
         /// </summary>
         /// <param name="shader">Pixel shader</param>
+        /// <inheritdoc/>
         internal PixelShaderEffectBase(PixelShader shader)
         {
             PixelShader = shader;
@@ -79,7 +95,7 @@ namespace wpfpslib
         /// <summary>
         /// Updates all pixel shader properties
         /// </summary>
-        internal protected abstract void UpdateShader();
+        protected internal abstract void UpdateShader();
 
         /// <summary>
         /// Tries to get the pixel shader associated with the given name and returns whether the fetch was successfull
@@ -87,7 +103,7 @@ namespace wpfpslib
         /// <param name="name">Pixel shader name</param>
         /// <param name="shader">The pixel shader (null if not found)</param>
         /// <returns>Result, whether the fetching operation was successfull</returns>
-        public static bool TryGetShaderByName(string name, out PixelShaderEffectBase shader)
+        public static bool TryGetShaderByName(string? name, out PixelShaderEffectBase? shader)
         {
             shader = null;
             name = name?.ToLower();
@@ -103,8 +119,8 @@ namespace wpfpslib
 
         private static Uri GetUri(string name) => new Uri($"pack://application:,,,/{asmname};component/ps-compiled/{name}.ps");
 
-        private static string TrimEnd(string input, string suffix, StringComparison cmp = StringComparison.InvariantCulture) =>
-            (suffix != null) && (input?.EndsWith(suffix, cmp) ?? false) ? input.Substring(0, input.Length - suffix.Length) : input;
+        private static string? TrimEnd(string? input, string? suffix, StringComparison cmp = StringComparison.InvariantCulture) =>
+            suffix is string s && (input?.EndsWith(s, cmp) ?? false) ? input[..^s.Length] : input;
 
         /// <summary>
         /// Registers a new Dependency Property bound to a given .NET Property and a HLSL Pixel Shader register
@@ -121,7 +137,6 @@ namespace wpfpslib
 
     internal static class Extensions
     {
-        internal static bool match(this string str, string pat, out Match m, RegexOptions opt = RegexOptions.Compiled | RegexOptions.IgnoreCase) =>
-            (m = Regex.Match(str, pat, opt)).Success;
+        internal static bool Match(this string str, string pat, out Match m, RegexOptions opt = RegexOptions.Compiled | RegexOptions.IgnoreCase) => (m = Regex.Match(str, pat, opt)).Success;
     }
 }

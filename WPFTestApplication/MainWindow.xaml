@@ -107,12 +107,21 @@
         <GroupBox x:Name="gb13" Template="{StaticResource cntrl}" Header="Invert Effect" Canvas.Top="230" Canvas.Left="430">
             <fx:InvertEffect Amount="1"/>
         </GroupBox>
-        <GroupBox x:Name="gb14" Template="{StaticResource cntrl}" Header="" Canvas.Top="230" Canvas.Left="645">
+        <GroupBox x:Name="gb14" Template="{StaticResource cntrl}" Header="Telescopic Blur effect" Canvas.Top="230" Canvas.Left="645">
+            <GroupBox.Effect>
+                <fx:TelescopicBlurEffect Amount="0.3" Radius="0.3"/>
+            </GroupBox.Effect>
         </GroupBox>
         <GroupBox x:Name="gb15" Template="{StaticResource cntrl}" Header="" Canvas.Top="230" Canvas.Left="860">
         </GroupBox>
-        <GroupBox x:Name="gb16" Template="{StaticResource cntrl}" Header="" Canvas.Top="345">
-        </GroupBox>
+        <GroupBox x:Name="gb16" Template="{StaticResource cntrl}" Header="" Canvas.Top="345"/>
+        <Border x:Name="grid_bbh" BorderBrush="Red" BorderThickness="1" Canvas.Top="300" Width="125" Height="150"><!--Background="#7f30"-->
+            <Border.Effect>
+                <!--<BlurEffect Radius="2"/>-->
+                <fx:BlurBehindEffect Radius="20" FrameworkElement="{x:Reference grid_bbh}"/>
+            </Border.Effect>
+            <Label Content="top jej" Margin="30"/>
+        </Border>
         <GroupBox x:Name="gb17" Template="{StaticResource cntrl}" Header="" Canvas.Top="345" Canvas.Left="215">
         </GroupBox>
         <GroupBox x:Name="gb18" Template="{StaticResource cntrl}" Header="" Canvas.Top="345" Canvas.Left="430">

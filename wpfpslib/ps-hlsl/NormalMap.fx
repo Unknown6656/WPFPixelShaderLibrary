@@ -29,7 +29,7 @@ float4 main(float2 uv : TEXCOORD) : COLOR
     };
     float sx = 128, sy = 128;
     float r = clamp(Range, 0.000001, 1);
-		int fx, fy;
+    int fx, fy;
 
     for (fy = -1; fy <= 1; ++fy)
         for (fx = -1; fx <= 1; ++fx)
@@ -41,9 +41,9 @@ float4 main(float2 uv : TEXCOORD) : COLOR
             sx += hmat[fy + 1][fx + 1] * gray;
             sy += vmat[fy + 1][fx + 1] * gray;
         }
-        
+
     float sz = (abs(sx - 128) + abs(sy - 128)) / 4.0f;
-    
+
     return float4(
         constr(sx / 255),
         constr(sy / 255),

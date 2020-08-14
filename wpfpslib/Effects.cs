@@ -1,10 +1,6 @@
-﻿using System.Windows.Media.Effects;
-using System.Windows.Media.Imaging;
-using System.Collections.Generic;
+﻿using System.Reflection;
 using System.Windows.Media;
 using System.Windows;
-using System.Linq;
-using System.Text;
 using System;
 
 namespace wpfpslib
@@ -12,6 +8,7 @@ namespace wpfpslib
     /// <summary>
     /// Represents an effect, which renderes any input into its corresponding normal map
     /// </summary>
+    /// <inheritdoc/>
     public sealed class NormalMapEffect
         : PixelShaderEffectBase
     {
@@ -34,7 +31,7 @@ namespace wpfpslib
         /// </summary>
         public double Range
         {
-            get => ((double)(GetValue(RangeProperty)));
+            get => (double)GetValue(RangeProperty);
             set => SetValue(RangeProperty, value);
         }
 
@@ -43,7 +40,7 @@ namespace wpfpslib
         /// </summary>
         public Brush Input
         {
-            get => ((Brush)(GetValue(InputProperty)));
+            get => (Brush)GetValue(InputProperty);
             set => SetValue(InputProperty, value);
         }
 
@@ -51,14 +48,16 @@ namespace wpfpslib
         /// <summary>
         /// Creates a new instance
         /// </summary>
+        /// <inheritdoc/>
         public NormalMapEffect()
-            : base()
+            : base(typeof(NormalMapEffect))
         {
         }
 
         /// <summary>
         /// Updates all pixel shader properties
         /// </summary>
+        /// <inheritdoc/>
         protected internal override void UpdateShader()
         {
             UpdateShaderValue(InputProperty);
@@ -66,9 +65,6 @@ namespace wpfpslib
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public sealed class GlassTilesEffect
         : PixelShaderEffectBase
     {
@@ -131,14 +127,16 @@ namespace wpfpslib
         /// <summary>
         /// Creates a new instance
         /// </summary>
+        /// <inheritdoc/>
         public GlassTilesEffect()
-            : base()
+            : base(typeof(NormalMapEffect))
         {
         }
 
         /// <summary>
         /// Updates all pixel shader properties
         /// </summary>
+        /// <inheritdoc/>
         protected internal override void UpdateShader()
         {
             UpdateShaderValue(InputProperty);
@@ -149,9 +147,6 @@ namespace wpfpslib
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public sealed class CubicLensDistortionEffect
         : PixelShaderEffectBase
     {
@@ -204,14 +199,16 @@ namespace wpfpslib
         /// <summary>
         /// Creates a new instance
         /// </summary>
+        /// <inheritdoc/>
         public CubicLensDistortionEffect()
-            : base()
+            : base(typeof(CubicLensDistortionEffect))
         {
         }
 
         /// <summary>
         /// Updates all pixel shader properties
         /// </summary>
+        /// <inheritdoc/>
         protected internal override void UpdateShader()
         {
             UpdateShaderValue(InputProperty);
@@ -221,8 +218,9 @@ namespace wpfpslib
     }
 
     /// <summary>
-    /// 
+    /// Represents a cubic chromatic abberation effect (also known as cubic RGB-split)
     /// </summary>
+    /// <inheritdoc/>
     public sealed class CubicChromaticAbberationEffect
         : PixelShaderEffectBase
     {
@@ -245,6 +243,11 @@ namespace wpfpslib
             set => SetValue(InputProperty, value);
         }
 
+        /// <summary>
+        /// Abberation amount.
+        /// <para/>
+        /// Should be set to a value between [0..∞)
+        /// </summary>
         public double Amount
         {
             get => (double)GetValue(AmountProperty);
@@ -255,24 +258,27 @@ namespace wpfpslib
         /// <summary>
         /// Creates a new instance
         /// </summary>
+        /// <inheritdoc/>
         public CubicChromaticAbberationEffect()
-            : base()
+            : base(typeof(CubicChromaticAbberationEffect))
         {
         }
 
         /// <summary>
         /// Updates all pixel shader properties
         /// </summary>
+        /// <inheritdoc/>
         protected internal override void UpdateShader()
         {
             UpdateShaderValue(InputProperty);
             UpdateShaderValue(AmountProperty);
         }
     }
-    
+
     /// <summary>
-    /// 
+    /// Represents a linear chromatic abberation effect (also known as linear RGB-split)
     /// </summary>
+    /// <inheritdoc/>
     public sealed class LinearChromaticAbberationEffect
         : PixelShaderEffectBase
     {
@@ -290,18 +296,31 @@ namespace wpfpslib
         public static readonly DependencyProperty AngleProperty = DependencyProperty.Register(nameof(Angle), typeof(double), typeof(LinearChromaticAbberationEffect), new UIPropertyMetadata(0d, PixelShaderConstantCallback(1)));
 
 
+        /// <summary>
+        /// The imagery input data
+        /// </summary>
         public Brush Input
         {
             get => GetValue(InputProperty) as Brush;
             set => SetValue(InputProperty, value);
         }
 
+        /// <summary>
+        /// Abberation amount.
+        /// <para/>
+        /// Should be set to a value between [0..1]
+        /// </summary>
         public double Amount
         {
             get => (double)GetValue(AmountProperty);
             set => SetValue(AmountProperty, value);
         }
 
+        /// <summary>
+        /// Abberation angle.
+        /// <para/>
+        /// Should be set to a value between [0..1] which will be translated to a mathematical angle between [0..2π]
+        /// </summary>
         public double Angle
         {
             get => (double)GetValue(AngleProperty);
@@ -312,8 +331,9 @@ namespace wpfpslib
         /// <summary>
         /// Creates a new instance
         /// </summary>
+        /// <inheritdoc/>
         public LinearChromaticAbberationEffect()
-            : base()
+            : base(typeof(LinearChromaticAbberationEffect))
         {
         }
 
@@ -328,9 +348,6 @@ namespace wpfpslib
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public sealed class RoundedGlassTilesEffect
         : PixelShaderEffectBase
     {
@@ -363,14 +380,16 @@ namespace wpfpslib
         /// <summary>
         /// Creates a new instance
         /// </summary>
+        /// <inheritdoc/>
         public RoundedGlassTilesEffect()
-            : base()
+            : base(typeof(RoundedGlassTilesEffect))
         {
         }
 
         /// <summary>
         /// Updates all pixel shader properties
         /// </summary>
+        /// <inheritdoc/>
         protected internal override void UpdateShader()
         {
             UpdateShaderValue(InputProperty);
@@ -381,6 +400,7 @@ namespace wpfpslib
     /// <summary>
     /// Represents an hexagonal pixelation effect
     /// </summary>
+    /// <inheritdoc/>
     public sealed class HexagonalPixelationEffect
         : PixelShaderEffectBase
     {
@@ -418,14 +438,16 @@ namespace wpfpslib
         /// <summary>
         /// Creates a new instance
         /// </summary>
+        /// <inheritdoc/>
         public HexagonalPixelationEffect()
-            : base()
+            : base(typeof(HexagonalPixelationEffect))
         {
         }
 
         /// <summary>
         /// Updates all pixel shader properties
         /// </summary>
+        /// <inheritdoc/>
         protected internal override void UpdateShader()
         {
             UpdateShaderValue(InputProperty);
@@ -436,6 +458,7 @@ namespace wpfpslib
     /// <summary>
     /// Represents a rippling effect
     /// </summary>
+    /// <inheritdoc/>
     public class RippleEffect
         : PixelShaderEffectBase
     {
@@ -484,7 +507,7 @@ namespace wpfpslib
             get => (Point)GetValue(CenterProperty);
             set => SetValue(CenterProperty, value);
         }
-        
+
         /// <summary>
         /// The rippling effect's wave amplitude.
         /// <para/>
@@ -533,14 +556,16 @@ namespace wpfpslib
         /// <summary>
         /// Creates a new instance
         /// </summary>
+        /// <inheritdoc/>
         public RippleEffect()
-            : base()
+            : base(typeof(RippleEffect))
         {
         }
 
         /// <summary>
         /// Updates all pixel shader properties
         /// </summary>
+        /// <inheritdoc/>
         protected internal override void UpdateShader()
         {
             UpdateShaderValue(InputProperty);
@@ -555,6 +580,7 @@ namespace wpfpslib
     /// <summary>
     /// Represents a pixelation effect
     /// </summary>
+    /// <inheritdoc/>
     public class PixelationEffect
         : PixelShaderEffectBase
     {
@@ -590,14 +616,16 @@ namespace wpfpslib
         /// <summary>
         /// Creates a new instance
         /// </summary>
+        /// <inheritdoc/>
         public PixelationEffect()
-            : base()
+            : base(typeof(PixelationEffect))
         {
         }
 
         /// <summary>
         /// Updates all pixel shader properties
         /// </summary>
+        /// <inheritdoc/>
         protected internal override void UpdateShader()
         {
             UpdateShaderValue(InputProperty);
@@ -608,6 +636,7 @@ namespace wpfpslib
     /// <summary>
     /// Represents an offset/diagonalized pixelation effect
     /// </summary>
+    /// <inheritdoc/>
     public class DiagonalPixelationEffect
         : PixelShaderEffectBase
     {
@@ -643,14 +672,16 @@ namespace wpfpslib
         /// <summary>
         /// Creates a new instance
         /// </summary>
+        /// <inheritdoc/>
         public DiagonalPixelationEffect()
-            : base()
+            : base(typeof(DiagonalPixelationEffect))
         {
         }
 
         /// <summary>
         /// Updates all pixel shader properties
         /// </summary>
+        /// <inheritdoc/>
         protected internal override void UpdateShader()
         {
             UpdateShaderValue(InputProperty);
@@ -661,13 +692,14 @@ namespace wpfpslib
     /// <summary>
     /// Represents an effect creating a gravitational lensing around a black hole
     /// </summary>
+    /// <inheritdoc/>
     public sealed class BlackHoleEffect
             : PixelShaderEffectBase
     {
         /// <summary>
         /// Identifies the <see cref="Position"/> property
         /// </summary>
-        public static readonly DependencyProperty PositionProperty = Register(nameof(Position), typeof(Point), typeof(BlackHoleEffect), default(Point), 0);
+        public static readonly DependencyProperty PositionProperty = Register(nameof(Position), typeof(Point), typeof(BlackHoleEffect), new Point(.5, .5), 0);
         /// <summary>
         /// Identifies the <see cref="Aspectratio"/> property
         /// </summary>
@@ -701,25 +733,45 @@ namespace wpfpslib
             set => SetValue(PositionProperty, value);
         }
 
-        public Double Aspectratio
+        /// <summary>
+        /// The aspect ratio.
+        /// <para/>
+        /// Should be set to the value 'Width / Height'
+        /// </summary>
+        public double Aspectratio
         {
             get => (double)GetValue(AspectratioProperty);
             set => SetValue(AspectratioProperty, value);
         }
 
-        public Double Radius
+        /// <summary>
+        /// The graviational lensing effect radius.
+        /// <para/>
+        /// Should be set to a value between [0..1]
+        /// </summary>
+        public double Radius
         {
             get => (double)GetValue(RadiusProperty);
             set => SetValue(RadiusProperty, value);
         }
 
-        public Double Dist
+        /// <summary>
+        /// The black hole's distance to the 'camera'.
+        /// <para/>
+        /// Should be set to a value of (0..1]
+        /// </summary>
+        public double Dist
         {
             get => (double)GetValue(DistProperty);
             set => SetValue(DistProperty, value);
         }
 
-        public Double Size
+        /// <summary>
+        /// The black hole's size compared to its graviational lensing radius.
+        /// <para/>
+        /// Should be set to a value between [(0,0)...(1,1)]
+        /// </summary>
+        public double Size
         {
             get => (double)GetValue(SizeProperty);
             set => SetValue(SizeProperty, value);
@@ -738,14 +790,16 @@ namespace wpfpslib
         /// <summary>
         /// Creates a new instance
         /// </summary>
+        /// <inheritdoc/>
         public BlackHoleEffect()
-            : base()
+            : base(typeof(BlackHoleEffect))
         {
         }
 
         /// <summary>
         /// Updates all pixel shader properties
         /// </summary>
+        /// <inheritdoc/>
         protected internal override void UpdateShader()
         {
             UpdateShaderValue(PositionProperty);
@@ -760,6 +814,7 @@ namespace wpfpslib
     /// <summary>
     /// Represents a color inversion effect
     /// </summary>
+    /// <inheritdoc/>
     public sealed class InvertEffect
         : PixelShaderEffectBase
     {
@@ -778,7 +833,7 @@ namespace wpfpslib
         /// <para/>
         /// Should be set to a value between [0..1]
         /// </summary>
-        public Double Amount
+        public double Amount
         {
             get => (double)GetValue(AmountProperty);
             set => SetValue(AmountProperty, value);
@@ -797,18 +852,326 @@ namespace wpfpslib
         /// <summary>
         /// Creates a new instance
         /// </summary>
+        /// <inheritdoc/>
         public InvertEffect()
-            : base()
+            : base(typeof(InvertEffect))
         {
         }
 
         /// <summary>
         /// Updates all pixel shader properties
         /// </summary>
+        /// <inheritdoc/>
         protected internal override void UpdateShader()
         {
             UpdateShaderValue(AmountProperty);
             UpdateShaderValue(InputProperty);
+        }
+    }
+
+    /// <summary>
+    /// Represents a telescopic blurring effect
+    /// </summary>
+    /// <inheritdoc/>
+    public sealed class TelescopicBlurEffect
+        : PixelShaderEffectBase
+    {
+        /// <summary>
+        /// Identifies the <see cref="Center"/> property
+        /// </summary>
+        public static readonly DependencyProperty CenterProperty = Register(nameof(Center), typeof(Point), typeof(TelescopicBlurEffect), new Point(.5, .5), 0);
+        /// <summary>
+        /// Identifies the <see cref="Amount"/> property
+        /// </summary>
+        public static readonly DependencyProperty AmountProperty = Register(nameof(Amount), typeof(double), typeof(TelescopicBlurEffect), default(double), 1);
+        /// <summary>
+        /// Identifies the <see cref="Radius"/> property
+        /// </summary>
+        public static readonly DependencyProperty RadiusProperty = Register(nameof(Radius), typeof(double), typeof(TelescopicBlurEffect), default(double), 2);
+        /// <summary>
+        /// Identifies the <see cref="Input"/> property
+        /// </summary>
+        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty(nameof(Input), typeof(TelescopicBlurEffect), 0);
+
+
+        /// <summary>
+        /// The blur's center point
+        /// <para/>
+        /// Should be set to a value between [(0,0)..(1,1)]
+        /// </summary>
+        public Point Center
+        {
+            get => (Point)GetValue(CenterProperty);
+            set => SetValue(CenterProperty, value);
+        }
+
+        /// <summary>
+        /// The telescopic blur amount.
+        /// <para/>
+        /// Should be set to a value between [0..1]
+        /// </summary>
+        public double Amount
+        {
+            get => (double)GetValue(AmountProperty);
+            set => SetValue(AmountProperty, value);
+        }
+
+        /// <summary>
+        /// The blur's inner falloff radius.
+        /// <para/>
+        /// Should be set to a value between [0..1]
+        /// </summary>
+        public double Radius
+        {
+            get => (double)GetValue(RadiusProperty);
+            set => SetValue(RadiusProperty, value);
+        }
+
+        /// <summary>
+        /// The imagery input data
+        /// </summary>
+        public Brush Input
+        {
+            get => (Brush)GetValue(InputProperty);
+            set => SetValue(InputProperty, value);
+        }
+
+
+        /// <summary>
+        /// Creates a new instance
+        /// </summary>
+        /// <inheritdoc/>
+        public TelescopicBlurEffect()
+            : base(typeof(TelescopicBlurEffect))
+        {
+        }
+
+        /// <summary>
+        /// Updates all pixel shader properties
+        /// </summary>
+        /// <inheritdoc/>
+        protected internal override void UpdateShader()
+        {
+            UpdateShaderValue(CenterProperty);
+            UpdateShaderValue(AmountProperty);
+            UpdateShaderValue(RadiusProperty);
+            UpdateShaderValue(InputProperty);
+        }
+    }
+
+    /// <summary>
+    /// Represents a spastic horizontal twitching effect
+    /// </summary>
+    /// <inheritdoc/>
+    public sealed class SpasticChromaticAbberationEffect
+        : PixelShaderEffectBase
+    {
+        /// <summary>
+        /// Identifies the <see cref="Phase"/> property
+        /// </summary>
+        public static readonly DependencyProperty PhaseProperty = Register(nameof(Phase), typeof(double), typeof(SpasticChromaticAbberationEffect), default(double), 0);
+        /// <summary>
+        /// Identifies the <see cref="Amount"/> property
+        /// </summary>
+        public static readonly DependencyProperty AmountProperty = Register(nameof(Amount), typeof(double), typeof(SpasticChromaticAbberationEffect), default(double), 1);
+        /// <summary>
+        /// Identifies the <see cref="Input"/> property
+        /// </summary>
+        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty(nameof(Input), typeof(SpasticChromaticAbberationEffect), 0);
+
+
+        /// <summary>
+        /// The twitching phase shift.
+        /// <para/>
+        /// Should be set to a value between [0..1] which will be mapped to a value between [0..2π]
+        /// </summary>
+        public double Phase
+        {
+            get => (double)GetValue(PhaseProperty);
+            set => SetValue(PhaseProperty, value);
+        }
+
+        /// <summary>
+        /// The twitching amount.
+        /// <para/>
+        /// Should be set to a value between [0..1]
+        /// </summary>
+        public double Amount
+        {
+            get => (double)GetValue(AmountProperty);
+            set => SetValue(AmountProperty, value);
+        }
+
+        /// <summary>
+        /// The imagery input data
+        /// </summary>
+        public Brush Input
+        {
+            get => (Brush)GetValue(InputProperty);
+            set => SetValue(InputProperty, value);
+        }
+
+
+        /// <summary>
+        /// Creates a new instance
+        /// </summary>
+        /// <inheritdoc/>
+        public SpasticChromaticAbberationEffect()
+            : base(typeof(SpasticChromaticAbberationEffect))
+        {
+        }
+
+        /// <summary>
+        /// Updates all pixel shader properties
+        /// </summary>
+        /// <inheritdoc/>
+        protected internal override void UpdateShader()
+        {
+            UpdateShaderValue(PhaseProperty);
+            UpdateShaderValue(AmountProperty);
+            UpdateShaderValue(InputProperty);
+        }
+    }
+
+    public sealed class BlurBehindEffect
+        : PixelShaderEffectBase
+    {
+        /// <summary>
+        /// Identifies the <see cref="Input"/> property
+        /// </summary>
+        public static readonly DependencyProperty InputProperty = RegisterPixelShaderSamplerProperty(nameof(Input), typeof(BlurBehindEffect), 0);
+
+        public static readonly DependencyProperty UpLeftCornerProperty = Register(nameof(UpLeftCorner), typeof(Point), typeof(BlurBehindEffect), default(Point), 0);
+
+        public static readonly DependencyProperty LowRightCornerProperty = Register(nameof(LowRightCorner), typeof(Point), typeof(BlurBehindEffect), default(Point), 1);
+
+        public static readonly DependencyProperty SpacingProperty = Register(nameof(Spacing), typeof(Size), typeof(BlurBehindEffect), default(Size), 2);
+
+        /// <summary>
+        /// Identifies the <see cref="Radius"/> property
+        /// </summary>
+        public static readonly DependencyProperty RadiusProperty = DependencyProperty.Register(nameof(Radius), typeof(double), typeof(BlurBehindEffect), new PropertyMetadata(0d));
+
+        public static readonly DependencyProperty FrameworkElementProperty = DependencyProperty.Register(nameof(FrameworkElement), typeof(FrameworkElement), typeof(BlurBehindEffect), new PropertyMetadata(null, OnFrameworkElementPropertyChanged));
+
+        private static readonly PropertyInfo? _inheritance_ctx = typeof(BlurBehindEffect).GetProperty("InheritanceContext", BindingFlags.Instance | BindingFlags.NonPublic);
+
+
+        /// <summary>
+        /// The imagery input data
+        /// </summary>
+        public Brush Input
+        {
+            get => (Brush)GetValue(InputProperty);
+            set => SetValue(InputProperty, value);
+        }
+
+        /// <summary>
+        /// The blur radius.
+        /// </summary>
+        public double Radius
+        {
+            get => (double)GetValue(RadiusProperty);
+            set
+            {
+                SetValue(RadiusProperty, value);
+                FrameworkElement = FrameworkElement; // trigger update
+            }
+        }
+
+        public Size Spacing
+        {
+            get => (Size)GetValue(SpacingProperty);
+            set => SetValue(SpacingProperty, value);
+        }
+
+        public Point UpLeftCorner
+        {
+            get => (Point)GetValue(UpLeftCornerProperty);
+            set => SetValue(UpLeftCornerProperty, value);
+        }
+
+        public Point LowRightCorner
+        {
+            get => (Point)GetValue(LowRightCornerProperty);
+            set => SetValue(LowRightCornerProperty, value);
+        }
+
+        public FrameworkElement? FrameworkElement
+        {
+            get => GetValue(FrameworkElementProperty) as FrameworkElement;
+            set => SetValue(FrameworkElementProperty, value);
+        }
+
+        public FrameworkElement? GetInheritanceContext => _inheritance_ctx?.GetValue(this, null) as FrameworkElement;
+
+
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <inheritdoc/>
+        public BlurBehindEffect()
+            : base(typeof(BlurBehindEffect))
+        {
+        }
+
+        /// <summary>
+        /// Updates all pixel shader properties
+        /// </summary>
+        /// <inheritdoc/>
+        protected internal override void UpdateShader()
+        {
+            UpdateShaderValue(RadiusProperty);
+            UpdateShaderValue(UpLeftCornerProperty);
+            UpdateShaderValue(LowRightCornerProperty);
+            UpdateShaderValue(InputProperty);
+            UpdateShaderValue(SpacingProperty);
+        }
+
+        private void UpdateEffect(object? sender, EventArgs args)
+        {
+            if (GetInheritanceContext is FrameworkElement under && FrameworkElement is FrameworkElement over)
+            {
+                Point u_origin = under.PointToScreen(new Point(0, 0));
+                Point o_origin = over.PointToScreen(new Point(0, 0));
+                Rect u_rect = new Rect(u_origin.X, u_origin.Y, under.ActualWidth, under.ActualHeight);
+                Rect o_rect = new Rect(o_origin.X, o_origin.Y, over.ActualWidth, over.ActualHeight);
+                Rect intersect = Rect.Intersect(o_rect, u_rect);
+
+                if (intersect.IsEmpty)
+                {
+                    UpLeftCorner = new Point(0, 0);
+                    LowRightCorner = new Point(0, 0);
+                }
+                else
+                {
+                    Point i_origin = under.PointFromScreen(new Point(intersect.X, intersect.Y));
+
+                    UpLeftCorner = new Point(i_origin.X / under.ActualWidth, i_origin.Y / under.ActualHeight);
+                    LowRightCorner = new Point(UpLeftCorner.X + (intersect.Width / under.ActualWidth), UpLeftCorner.Y + (intersect.Height / under.ActualHeight));
+                }
+
+                UpdateShader();
+            }
+        }
+
+        private void SizeChanged(object sender, SizeChangedEventArgs e) => Spacing = new Size(Radius / e.NewSize.Width, Radius / e.NewSize.Height);
+
+        private static void OnFrameworkElementPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs args)
+        {
+            BlurBehindEffect fx = (BlurBehindEffect)d;
+
+            if (args.OldValue is FrameworkElement old)
+            {
+                old.LayoutUpdated -= fx.UpdateEffect;
+                old.SizeChanged -= fx.SizeChanged;
+            }
+
+            if (args.NewValue is FrameworkElement @new)
+            {
+                @new.LayoutUpdated += fx.UpdateEffect;
+                @new.SizeChanged += fx.SizeChanged;
+            }
         }
     }
 }
