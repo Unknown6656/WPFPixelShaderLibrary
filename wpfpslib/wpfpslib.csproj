@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
     <PropertyGroup>
         <OutputType>Library</OutputType>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <DocumentationFile>wpfpslib.xml</DocumentationFile>
+        <TargetFrameworks>netcoreapp3.0;net46</TargetFrameworks>
         <RootNamespace>WPFTestApplication</RootNamespace>
         <UseWPF>true</UseWPF>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
         <XamlDebuggingInformation>True</XamlDebuggingInformation>
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <!--<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>-->
         <RunPostBuildEvent>Always</RunPostBuildEvent>
         <PackageId>unknown6656.WPFPixelShaderLibrary</PackageId>
         <Authors>unknown6656</Authors>
@@ -23,6 +24,8 @@ Just add `xmlns:fx="https://unknown6656.com/wpfpslib"` to your XAML namespace de
         <PackageTags>unknown6656;pixel;shader;effect;library;wpf;xaml;windows;blur;distortion;ps;dgsl;hlsl;fx;pscompiler;fxc</PackageTags>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>1.0.2</Version>
+        <AssemblyVersion>1.0.2.0</AssemblyVersion>
     </PropertyGroup>
     <ItemGroup>
         <Folder Include="ps-dgsl/" />
@@ -37,7 +40,9 @@ Just add `xmlns:fx="https://unknown6656.com/wpfpslib"` to your XAML namespace de
         </None>
         <Resource Include="ps-compiled/*.ps" />
         <None Remove="ps-hlsl\BlurBehind.fx" />
-        <ProjectReference Include="../pscompiler/pscompiler.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     </ItemGroup>
     <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
       <Exec Command="dotnet $(SolutionDir)tools/pscompiler.dll ps-hlsl ps-compiled" />

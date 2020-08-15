@@ -1,0 +1,795 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>wpfpslib</name>
+    </assembly>
+    <members>
+        <member name="T:wpfpslib.NormalMapEffect">
+            <summary>
+            Represents an effect, which renderes any input into its corresponding normal map
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="F:wpfpslib.NormalMapEffect.RangeProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.NormalMapEffect.Range"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.NormalMapEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.NormalMapEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.NormalMapEffect.Range">
+            <summary>
+            The normal map edge detection range.
+            <para/>
+            Should be set to a value between [0..1]
+            <para/>
+            Should be set to `4 / Min(Width, Height)` for best results
+            </summary>
+        </member>
+        <member name="P:wpfpslib.NormalMapEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="M:wpfpslib.NormalMapEffect.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.NormalMapEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="F:wpfpslib.GlassTilesEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.GlassTilesEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.GlassTilesEffect.TilesProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.GlassTilesEffect.Tiles"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.GlassTilesEffect.BevelWidthProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.GlassTilesEffect.BevelWidth"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.GlassTilesEffect.OffsetProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.GlassTilesEffect.Offset"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.GlassTilesEffect.BackgroundColorProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.GlassTilesEffect.BackgroundColor"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.GlassTilesEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="M:wpfpslib.GlassTilesEffect.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.GlassTilesEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="F:wpfpslib.CubicLensDistortionEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.CubicLensDistortionEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.CubicLensDistortionEffect.DistortionCoefficientProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.CubicLensDistortionEffect.DistortionCoefficient"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.CubicLensDistortionEffect.CubicDistortionProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.CubicLensDistortionEffect.CubicDistortion"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.CubicLensDistortionEffect.ZoomProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.CubicLensDistortionEffect.Zoom"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.CubicLensDistortionEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="M:wpfpslib.CubicLensDistortionEffect.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.CubicLensDistortionEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="T:wpfpslib.CubicChromaticAbberationEffect">
+            <summary>
+            Represents a cubic chromatic abberation effect (also known as cubic RGB-split)
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="F:wpfpslib.CubicChromaticAbberationEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.CubicChromaticAbberationEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.CubicChromaticAbberationEffect.AmountProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.CubicChromaticAbberationEffect.Amount"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.CubicChromaticAbberationEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="P:wpfpslib.CubicChromaticAbberationEffect.Amount">
+            <summary>
+            Abberation amount.
+            <para/>
+            Should be set to a value between [0..∞)
+            </summary>
+        </member>
+        <member name="M:wpfpslib.CubicChromaticAbberationEffect.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.CubicChromaticAbberationEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="T:wpfpslib.LinearChromaticAbberationEffect">
+            <summary>
+            Represents a linear chromatic abberation effect (also known as linear RGB-split)
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="F:wpfpslib.LinearChromaticAbberationEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.LinearChromaticAbberationEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.LinearChromaticAbberationEffect.AmountProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.LinearChromaticAbberationEffect.Amount"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.LinearChromaticAbberationEffect.AngleProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.LinearChromaticAbberationEffect.Angle"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.LinearChromaticAbberationEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="P:wpfpslib.LinearChromaticAbberationEffect.Amount">
+            <summary>
+            Abberation amount.
+            <para/>
+            Should be set to a value between [0..1]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.LinearChromaticAbberationEffect.Angle">
+            <summary>
+            Abberation angle.
+            <para/>
+            Should be set to a value between [0..1] which will be translated to a mathematical angle between [0..2π]
+            </summary>
+        </member>
+        <member name="M:wpfpslib.LinearChromaticAbberationEffect.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.LinearChromaticAbberationEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+        </member>
+        <member name="F:wpfpslib.RoundedGlassTilesEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.RoundedGlassTilesEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.RoundedGlassTilesEffect.DensityProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.RoundedGlassTilesEffect.Density"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.RoundedGlassTilesEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="M:wpfpslib.RoundedGlassTilesEffect.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.RoundedGlassTilesEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="T:wpfpslib.HexagonalPixelationEffect">
+            <summary>
+            Represents an hexagonal pixelation effect
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="F:wpfpslib.HexagonalPixelationEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.HexagonalPixelationEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.HexagonalPixelationEffect.AmountProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.HexagonalPixelationEffect.Amount"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.HexagonalPixelationEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="P:wpfpslib.HexagonalPixelationEffect.Amount">
+            <summary>
+            The pixelation amount
+            <para/>
+            The value should be between (0..1]
+            </summary>
+        </member>
+        <member name="M:wpfpslib.HexagonalPixelationEffect.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.HexagonalPixelationEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="T:wpfpslib.RippleEffect">
+            <summary>
+            Represents a rippling effect
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="F:wpfpslib.RippleEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.RippleEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.RippleEffect.CenterProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.RippleEffect.Center"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.RippleEffect.AmplitudeProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.RippleEffect.Amplitude"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.RippleEffect.FrequencyProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.RippleEffect.Frequency"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.RippleEffect.PhaseProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.RippleEffect.Phase"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.RippleEffect.AspectRatioProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.RippleEffect.AspectRatio"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.RippleEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="P:wpfpslib.RippleEffect.Center">
+            <summary>
+            The ripple effect's center point.
+            <para/>
+            Should be set to a value between [(0,0)..(1,1)]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.RippleEffect.Amplitude">
+            <summary>
+            The rippling effect's wave amplitude.
+            <para/>
+            Should be set to a value between [0..1]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.RippleEffect.Frequency">
+            <summary>
+            The rippling effect's wave frequency.
+            <para/>
+            Should be set to a value between [0..300]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.RippleEffect.Phase">
+            <summary>
+            The rippling effect's phase.
+            <para/>
+            Should be set to a value between [-π..+π]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.RippleEffect.AspectRatio">
+            <summary>
+            The rippling effect's aspect ratio.
+            <para/>
+            Should be set to `Width / Height` 
+            </summary>
+        </member>
+        <member name="M:wpfpslib.RippleEffect.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.RippleEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="T:wpfpslib.PixelationEffect">
+            <summary>
+            Represents a pixelation effect
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="F:wpfpslib.PixelationEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.PixelationEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.PixelationEffect.CountProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.PixelationEffect.Count"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.PixelationEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="P:wpfpslib.PixelationEffect.Count">
+            <summary>
+            The horizontal and vertical pixel count
+            </summary>
+        </member>
+        <member name="M:wpfpslib.PixelationEffect.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.PixelationEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="T:wpfpslib.DiagonalPixelationEffect">
+            <summary>
+            Represents an offset/diagonalized pixelation effect
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="F:wpfpslib.DiagonalPixelationEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.DiagonalPixelationEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.DiagonalPixelationEffect.CountProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.DiagonalPixelationEffect.Count"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.DiagonalPixelationEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="P:wpfpslib.DiagonalPixelationEffect.Count">
+            <summary>
+            The horizontal and vertical pixel count
+            </summary>
+        </member>
+        <member name="M:wpfpslib.DiagonalPixelationEffect.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.DiagonalPixelationEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="T:wpfpslib.BlackHoleEffect">
+            <summary>
+            Represents an effect creating a gravitational lensing around a black hole
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="F:wpfpslib.BlackHoleEffect.PositionProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.BlackHoleEffect.Position"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.BlackHoleEffect.AspectratioProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.BlackHoleEffect.Aspectratio"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.BlackHoleEffect.RadiusProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.BlackHoleEffect.Radius"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.BlackHoleEffect.DistProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.BlackHoleEffect.Dist"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.BlackHoleEffect.SizeProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.BlackHoleEffect.Size"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.BlackHoleEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.BlackHoleEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.BlackHoleEffect.Position">
+            <summary>
+            The black hole's center position
+            <para/>
+            Should be set to a value between [(0,0)..(1,1)]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.BlackHoleEffect.Aspectratio">
+            <summary>
+            The aspect ratio.
+            <para/>
+            Should be set to the value 'Width / Height'
+            </summary>
+        </member>
+        <member name="P:wpfpslib.BlackHoleEffect.Radius">
+            <summary>
+            The graviational lensing effect radius.
+            <para/>
+            Should be set to a value between [0..1]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.BlackHoleEffect.Dist">
+            <summary>
+            The black hole's distance to the 'camera'.
+            <para/>
+            Should be set to a value of (0..1]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.BlackHoleEffect.Size">
+            <summary>
+            The black hole's size compared to its graviational lensing radius.
+            <para/>
+            Should be set to a value between [(0,0)...(1,1)]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.BlackHoleEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="M:wpfpslib.BlackHoleEffect.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.BlackHoleEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="T:wpfpslib.InvertEffect">
+            <summary>
+            Represents a color inversion effect
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="F:wpfpslib.InvertEffect.AmountProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.InvertEffect.Amount"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.InvertEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.InvertEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.InvertEffect.Amount">
+            <summary>
+            The inversion amount.
+            <para/>
+            Should be set to a value between [0..1]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.InvertEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="M:wpfpslib.InvertEffect.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.InvertEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="T:wpfpslib.TelescopicBlurEffect">
+            <summary>
+            Represents a telescopic blurring effect
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="F:wpfpslib.TelescopicBlurEffect.CenterProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.TelescopicBlurEffect.Center"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.TelescopicBlurEffect.AmountProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.TelescopicBlurEffect.Amount"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.TelescopicBlurEffect.RadiusProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.TelescopicBlurEffect.Radius"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.TelescopicBlurEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.TelescopicBlurEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.TelescopicBlurEffect.Center">
+            <summary>
+            The blur's center point
+            <para/>
+            Should be set to a value between [(0,0)..(1,1)]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.TelescopicBlurEffect.Amount">
+            <summary>
+            The telescopic blur amount.
+            <para/>
+            Should be set to a value between [0..1]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.TelescopicBlurEffect.Radius">
+            <summary>
+            The blur's inner falloff radius.
+            <para/>
+            Should be set to a value between [0..1]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.TelescopicBlurEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="M:wpfpslib.TelescopicBlurEffect.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.TelescopicBlurEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="T:wpfpslib.SpasticChromaticAbberationEffect">
+            <summary>
+            Represents a spastic horizontal twitching effect
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="F:wpfpslib.SpasticChromaticAbberationEffect.PhaseProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.SpasticChromaticAbberationEffect.Phase"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.SpasticChromaticAbberationEffect.AmountProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.SpasticChromaticAbberationEffect.Amount"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.SpasticChromaticAbberationEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.SpasticChromaticAbberationEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.SpasticChromaticAbberationEffect.Phase">
+            <summary>
+            The twitching phase shift.
+            <para/>
+            Should be set to a value between [0..1] which will be mapped to a value between [0..2π]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.SpasticChromaticAbberationEffect.Amount">
+            <summary>
+            The twitching amount.
+            <para/>
+            Should be set to a value between [0..1]
+            </summary>
+        </member>
+        <member name="P:wpfpslib.SpasticChromaticAbberationEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="M:wpfpslib.SpasticChromaticAbberationEffect.#ctor">
+            <summary>
+            Creates a new instance
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.SpasticChromaticAbberationEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="F:wpfpslib.BlurBehindEffect.InputProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.BlurBehindEffect.Input"/> property
+            </summary>
+        </member>
+        <member name="F:wpfpslib.BlurBehindEffect.RadiusProperty">
+            <summary>
+            Identifies the <see cref="P:wpfpslib.BlurBehindEffect.Radius"/> property
+            </summary>
+        </member>
+        <member name="P:wpfpslib.BlurBehindEffect.Input">
+            <summary>
+            The imagery input data
+            </summary>
+        </member>
+        <member name="P:wpfpslib.BlurBehindEffect.Radius">
+            <summary>
+            The blur radius.
+            </summary>
+        </member>
+        <member name="M:wpfpslib.BlurBehindEffect.#ctor">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.BlurBehindEffect.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="T:wpfpslib.PixelShaderEffectBase">
+            <summary>
+            Represents the base class for all pixel shader effects. Cannot be inherited from external classes.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:wpfpslib.PixelShaderEffectBase.AvailableEffects">
+            <summary>
+            A list of all available pixel shader effects' names
+            </summary>
+        </member>
+        <member name="M:wpfpslib.PixelShaderEffectBase.#cctor">
+            <summary>
+            Static constructor
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.PixelShaderEffectBase.#ctor">
+            <summary>
+            Creates a new pixel shader with the caller's name used as pixel shader input file
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.PixelShaderEffectBase.#ctor(System.String)">
+            <summary>
+            Creates a new pixel shader with the given name used as pixel shader input file (without file extension or directory)
+            </summary>
+            <param name="name">Compiled pixel shader file name</param>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.PixelShaderEffectBase.#ctor(System.Type)">
+            <summary>
+            Creates a new pixel shader with the given C# class type
+            </summary>
+            <param name="type">Pixel shader effect type</param>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.PixelShaderEffectBase.#ctor(System.Windows.Media.Effects.PixelShader)">
+            <summary>
+            Creates a new pixel shader effect based on the given shader
+            </summary>
+            <param name="shader">Pixel shader</param>
+            <inheritdoc/>
+        </member>
+        <member name="M:wpfpslib.PixelShaderEffectBase.UpdateShader">
+            <summary>
+            Updates all pixel shader properties
+            </summary>
+        </member>
+        <member name="M:wpfpslib.PixelShaderEffectBase.TryGetShaderByName(System.String,wpfpslib.PixelShaderEffectBase@)">
+            <summary>
+            Tries to get the pixel shader associated with the given name and returns whether the fetch was successfull
+            </summary>
+            <param name="name">Pixel shader name</param>
+            <param name="shader">The pixel shader (null if not found)</param>
+            <returns>Result, whether the fetching operation was successfull</returns>
+        </member>
+        <member name="M:wpfpslib.PixelShaderEffectBase.Register(System.String,System.Type,System.Type,System.Object,System.Int32)">
+            <summary>
+            Registers a new Dependency Property bound to a given .NET Property and a HLSL Pixel Shader register
+            </summary>
+            <param name="name">.NET Property name</param>
+            <param name="type">.NET Property type</param>
+            <param name="parent">.NET Parent type</param>
+            <param name="default">Default value</param>
+            <param name="slot">HLSL register</param>
+            <returns>>Generated Depenendy Property</returns>
+        </member>
+    </members>
+</doc>

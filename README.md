@@ -3,6 +3,9 @@
 ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/unknown6656.WPFPixelShaderLibrary)
 | [NuGet Package](https://www.nuget.org/packages/unknown6656.WPFPixelShaderLibrary/)
 
+Requires .NET Framework v.4.6 (or higher) or .NET Core 3.0 (or higher).
+
+#### Usage
 Just add `xmlns:fx="https://unknown6656.com/wpfpslib"` to your XAML namespace definitions to use the effects:
 ```xml
 <Window x:Class="MyTestApp.MainWindow"

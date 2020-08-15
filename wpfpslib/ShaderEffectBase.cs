@@ -120,7 +120,7 @@ namespace wpfpslib
         private static Uri GetUri(string name) => new Uri($"pack://application:,,,/{asmname};component/ps-compiled/{name}.ps");
 
         private static string? TrimEnd(string? input, string? suffix, StringComparison cmp = StringComparison.InvariantCulture) =>
-            suffix is string s && (input?.EndsWith(s, cmp) ?? false) ? input[..^s.Length] : input;
+            suffix is string s && (input?.EndsWith(s, cmp) ?? false) ? input.Remove(input.Length - s.Length) : input;
 
         /// <summary>
         /// Registers a new Dependency Property bound to a given .NET Property and a HLSL Pixel Shader register
