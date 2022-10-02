@@ -5,6 +5,8 @@
 
 Requires .NET Framework v.4.6 (or higher) or .NET Core 3.0 (or higher).
 
+Have a look at https://github.com/Unknown6656-Megacorp/Unknown6656.CVGLPixelShader for a rough Python-equivalent of this repo.
+
 #### Usage
 Just add `xmlns:fx="https://unknown6656.com/wpfpslib"` to your XAML namespace definitions to use the effects:
 ```xml
